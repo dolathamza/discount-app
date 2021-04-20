@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-
 const HomeScreen = ({ navigation }) => {
 	const [originalPrice, setOriginalPrice] = useState("");
 	const [discoutPercentage, setDiscountPercentage] = useState("");
@@ -26,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
 		}
 	}, [originalPrice, discoutPercentage]);
 
-	
+
 
 	return (
 		<View style={styles.container}>
@@ -67,29 +66,46 @@ const HomeScreen = ({ navigation }) => {
 				<Text style={styles.pricingStyles}>Final Price: {total}$</Text>
 			</View>
 
-			
+			<View
+				style={{
+					marginTop: 20,
+					borderBottomColor: 'black',
+					borderBottomWidth: 1,
+				}}
+			/>
 
 			<View>
 				<View
 					style={{
-						marginTop: 40,
+
+						marginTop: 50,
 						textAlign: "left",
 						marginLeft: 10,
 						marginBottom: 10,
 					}}
 				>
-					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-						Instructions
+
+
+					<Text style={{ fontSize: 20, fontWeight: "bold"  }}>
+						How To Use The App
 					</Text>
 				</View>
 				<View style={{ textAlign: "left", marginLeft: 10 }}>
 					<Text>
+						
 						Add Total Price and Discount Percentage to calculate discount.
 					</Text>
-				
-					
+
+
 				</View>
 			</View>
+			<View
+				style={{
+					marginTop: 20,
+					borderBottomColor: 'black',
+					borderBottomWidth: 1,
+				}}
+			/>
 		</View>
 	);
 };
@@ -109,7 +125,7 @@ const styles = StyleSheet.create({
 		width: "50%",
 		padding: 5,
 		margin: "auto",
-		borderRadius: 5,
+		borderRadius: 10,
 		alignItems: "center",
 	},
 	discountStyles: {
@@ -118,11 +134,18 @@ const styles = StyleSheet.create({
 		marginLeft: 130,
 	},
 	pricingStyles: {
+		padding: 5,
+		margin: "auto",
+		borderRadius: 10,
+		alignItems: "center",
+		width: "50%",
+		borderWidth: 1,
+		borderColor: "grey",
 		fontWeight: "bold",
 		fontSize: 18,
 	},
 	calculateStyles: {
-		width: "30%",
+		width: "50%",
 		margin: "auto",
 		marginTop: 15,
 		marginLeft: 180,

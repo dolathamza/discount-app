@@ -2,7 +2,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./components/HomeScreen";
-
 const Stack = createStackNavigator();
 
 function App() {
@@ -12,6 +11,7 @@ function App() {
 				screenOptions={{
 					title: "Discount Calculator",
 					headerStyle: {
+
 						backgroundColor: "#000000",
 					},
 					headerTintColor: "#ffffff",
