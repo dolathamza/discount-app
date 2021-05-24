@@ -1,13 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+
 const HomeScreen = ({ navigation }) => {
 	const [originalPrice, setOriginalPrice] = useState("");
 	const [discoutPercentage, setDiscountPercentage] = useState("");
 	const [total, setTotal] = useState("0");
 	const [discount, setDiscount] = useState("0");
+	const [history, setHistory] = useState([]);
 	const [error, setError] = useState("");
 
-
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<View style={{ margin: 18 }}>
+					<Button
+						title="History"
+						onPress={() =>
+							navigation.navigate("History", {
+								history,
+							})
+						}
+						color="#264866"
+					/>
+				</View>
+			),
+		});
+	}, [navigation, history]);
 
 	useEffect(() => {
 		if (discoutPercentage > 100) {
@@ -25,13 +43,25 @@ const HomeScreen = ({ navigation }) => {
 		}
 	}, [originalPrice, discoutPercentage]);
 
-
+	const saveHandler = () => {
+		if (error == "") {
+			var newData = {
+				id: Math.floor(Math.random() * 100000),
+				originalPrice,
+				discoutPercentage,
+				total,
+			};
+			setHistory((history) => [...history, newData]);
+			setOriginalPrice("");
+			setDiscountPercentage("");
+		}
+	};
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.headerStyles}>
 				<Text style={{ fontSize: 25, fontWeight: "bold" }}>
-					Enter The Price To Calculate Discount
+					Calculate Discount
 				</Text>
 			</View>
 			<TextInput
@@ -66,50 +96,44 @@ const HomeScreen = ({ navigation }) => {
 				<Text style={styles.pricingStyles}>Final Price: {total}$</Text>
 			</View>
 
-			<View
-				style={{
-					marginTop: 20,
-					borderBottomColor: 'black',
-					borderBottomWidth: 1,
-				}}
-			/>
+			<Text style={styles.calculateStyles}>
+				{originalPrice && (
+					<View>
+						<Button title="save" onPress={saveHandler} color="#264866" />
+					</View>
+				)}
+			</Text>
 
 			<View>
 				<View
 					style={{
-
-						marginTop: 50,
+						marginTop: 40,
 						textAlign: "left",
 						marginLeft: 10,
 						marginBottom: 10,
 					}}
 				>
-
-
-					<Text style={{ fontSize: 20, fontWeight: "bold"  }}>
-						How To Use The App
+					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+						Instructions
 					</Text>
 				</View>
 				<View style={{ textAlign: "left", marginLeft: 10 }}>
 					<Text>
-						
 						Add Total Price and Discount Percentage to calculate discount.
 					</Text>
-
-
+					<Text>
+						Click on SAVE button to save calculations in history.
+					</Text>
+					<Text>Click on the history button to see history.</Text>
+					<Text>
+						In History screen, you can delete single entry or you can
+						clear history
+					</Text>
 				</View>
 			</View>
-			<View
-				style={{
-					marginTop: 20,
-					borderBottomColor: 'black',
-					borderBottomWidth: 1,
-				}}
-			/>
 		</View>
 	);
 };
-
 const styles = StyleSheet.create({
 	container: {},
 	headerStyles: {
