@@ -98,7 +98,7 @@ const HomeScreen = ({ navigation }) => {
 			</View>
 
 			<Text style={styles.calculateStyles}>
-				{originalPrice && (
+				{originalPrice && discoutPercentage && (
 					<View>
 						<Button title="save" onPress={saveHandler} color="#264866" />
 					</View>

@@ -17,6 +17,7 @@ const History = ({ route, navigation }) => {
 					style: "cancel",
 				},
 				{ text: "OK", onPress: () => setDiscountHistory([]) },
+				console.log(discountHistory),
 			],
 			{ cancelable: false }
 		);
