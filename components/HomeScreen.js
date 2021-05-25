@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
 		borderColor: "grey",
 		fontWeight: "bold",
 		fontSize: 18,
+		marginBottom: 10,
 	},
 	calculateStyles: {
 		width: "50%",
