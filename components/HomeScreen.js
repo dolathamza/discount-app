@@ -32,7 +32,6 @@ const HomeScreen = ({ navigation }) => {
 			setError("Discount cannot be greater then 100");
 		} else if (originalPrice < 0 || discoutPercentage < 0 || isNaN(discoutPercentage) || isNaN(originalPrice)) {
 			setError("Price or discount must be greater then 0 and should be a number");
-			console.log("chal ra e");
 		} else {
 			let totalPrice =
 				originalPrice - originalPrice * (discoutPercentage / 100);
