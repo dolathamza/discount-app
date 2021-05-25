@@ -30,8 +30,9 @@ const HomeScreen = ({ navigation }) => {
 	useEffect(() => {
 		if (discoutPercentage > 100) {
 			setError("Discount cannot be greater then 100");
-		} else if (originalPrice < 0 || discoutPercentage < 0) {
-			setError("Price or discount must be greater then 0");
+		} else if (originalPrice < 0 || discoutPercentage < 0 || isNaN(discoutPercentage) || isNaN(originalPrice)) {
+			setError("Price or discount must be greater then 0 and should be a number");
+			console.log("chal ra e");
 		} else {
 			let totalPrice =
 				originalPrice - originalPrice * (discoutPercentage / 100);
@@ -90,6 +91,7 @@ const HomeScreen = ({ navigation }) => {
 				}}
 			>
 				{originalPrice && error}
+
 			</Text>
 			<View style={styles.discountStyles}>
 				<Text style={styles.pricingStyles}>You save: {discount}$ </Text>
